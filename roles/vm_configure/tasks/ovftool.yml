@@ -12,9 +12,9 @@
     path_to_ova: "{{pathtoova}}"
     ova_file: "{{ovafile}}"
     vm_name: "{{vmname}}"
-    ovf_network_vnic0: "{{ovf_network_vnic0}}"
+    ovf_network_vnic0: "{{ovfnetwork_vnic0}}"
     portgroup_vnic0: "{{portgroup_vnic0}}"
-    ovf_network_vnic1: "{{ovf_network_vnic1}}"
+    ovf_network_vnic1: "{{ovfnetwork_vnic1}}"
     portgroup_vnic1: "{{portgroup_vnic1}}"
     ssl_verify: False
 
