@@ -1,0 +1,7 @@
+---
+ - name: Configure vFPC and vCP VMs
+   hosts: vmx_templates
+   connection: local
+
+   roles:
+   - vm_configure

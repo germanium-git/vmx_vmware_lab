@@ -1,0 +1,8 @@
+[vmware:children]
+vmx_templates
+
+
+[vmx_templates]
+vCP
+vFPC
+

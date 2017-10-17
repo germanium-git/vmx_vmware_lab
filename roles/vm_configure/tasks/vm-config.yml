@@ -1,0 +1,57 @@
+---
+- name: Configure FPC: vnic3-8 & CPU, RAM
+  vsphere_guest:
+    validate_certs: False 
+    vcenter_hostname: "{{ vcenter }}"
+    username: "{{ vuser }}"
+    password: "{{ vpassword }}"
+    guest: "{{ vmname}}"
+    state: reconfigured
+    vm_nic:
+      nic3:
+        type: vmxnet3
+        network: "{{vmnics['vmnic3']}}"
+        network_type: dvs
+      nic4:
+        type: vmxnet3
+        network: "{{vmnics['vmnic4']}}"
+        network_type: dvs
+      nic5:
+        type: vmxnet3
+        network: "{{vmnics['vmnic5']}}"
+        network_type: dvs
+      nic6:
+        type: vmxnet3
+        network: "{{vmnics['vmnic6']}}"
+        network_type: dvs
+      nic7:
+        type: vmxnet3
+        network: "{{vmnics['vmnic7']}}"
+        network_type: dvs
+      nic8:
+        type: vmxnet3
+        network: "{{vmnics['vmnic8']}}"
+        network_type: dvs
+
+    vm_hardware:
+      memory_mb: 8192
+      num_cpus: 3
+    esxi:
+      datacenter: "{{ datacenter }}"
+  when: vmxtype == "FPC"
+
+
+- name: Configure: CP CPU, RAM
+  vsphere_guest:
+    validate_certs: False
+    vcenter_hostname: "{{ vcenter }}"
+    username: "{{ vuser }}"
+    password: "{{ vpassword }}"
+    guest: "{{ vmname}}"
+    state: reconfigured
+    vm_hardware:
+      memory_mb: 2048
+      num_cpus: 1
+    esxi:
+      datacenter: "{{ datacenter }}"
+  when: vmxtype == "CP"

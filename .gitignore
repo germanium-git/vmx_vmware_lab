@@ -1,0 +1,4 @@
+.idea/
+vars_gitexclude.yml
+mylab/host_vars/vCP_giteclude.yml
+mylab/host_vars/vFPC_gitexclude.yml

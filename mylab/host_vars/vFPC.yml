@@ -1,0 +1,15 @@
+---
+ovafile: vfpc_17.2R1.13.ova
+vmname: vMX_vfpc_17.2R1.13
+ovfnetwork_vnic0: br-ext
+portgroup_vnic0: VM Network
+ovfnetwork_vnic1: br-int
+portgroup_vnic1: VM Network
+vmxtype: FPC
+vmnics:
+    vmnic3: port_group_a
+    vmnic4: port_group_b
+    vmnic5: port_group_c
+    vmnic6: port_group_d
+    vmnic7: port_group_e
+    vmnic8: port_group_f
