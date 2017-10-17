@@ -1,5 +1,5 @@
 ---
-- name: Configure FPC: vnic3-8 & CPU, RAM
+- name: Configure FPC vnic3-8 & CPU, RAM
   vsphere_guest:
     validate_certs: False 
     vcenter_hostname: "{{ vcenter }}"
@@ -41,7 +41,7 @@
   when: vmxtype == "FPC"
 
 
-- name: Configure: CP CPU, RAM
+- name: Configure CP CPU, RAM
   vsphere_guest:
     validate_certs: False
     vcenter_hostname: "{{ vcenter }}"

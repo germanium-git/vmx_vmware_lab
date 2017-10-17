@@ -11,5 +11,10 @@
 - identify dc, storage
 - update vault
 - encrypt the vault
+user@server:~/vmx_vmware_lab⟫ ansible-vault encrypt group_vars/vmware/vault.yml
+New Vault password:
+Confirm New Vault password:
+Encryption successful
+
 8. execute playbook
 ansible-playbook -i mylab vm_configure_pb.yml --ask-vault-pass
