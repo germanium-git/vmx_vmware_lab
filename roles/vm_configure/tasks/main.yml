@@ -7,3 +7,4 @@
 - import_tasks: ovftool.yml
 - import_tasks: vm-add-nic.yml
 - import_tasks: vm-config.yml
+- import_tasks: vm-to-template.yml

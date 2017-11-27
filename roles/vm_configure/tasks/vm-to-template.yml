@@ -1,0 +1,11 @@
+---
+- name: Convert VM to template
+  vm_addnic:
+     vcenter_ip: "{{ vcenter }}"
+     vcenter_user: "{{ vuser }}"
+     vcenter_password: "{{ vpassword }}"
+     vm_name: "{{ vmname}}"
+
+
+- debug: var=result
+
