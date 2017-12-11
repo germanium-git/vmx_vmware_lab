@@ -1,0 +1,8 @@
+---
+ - name: Create vFPC and vCP VM templates
+   hosts: vmx_templates
+   connection: local
+   gather_facts: no
+
+   roles:
+   - vm_template_create

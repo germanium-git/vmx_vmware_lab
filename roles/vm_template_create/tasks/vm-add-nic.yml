@@ -9,5 +9,4 @@
 
   when: vmxtype == "FPC"
 
-- debug: var=result
 
