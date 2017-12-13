@@ -6,4 +6,3 @@ portgroup_vnic0: VM Network
 ovfnetwork_vnic1: br-int
 portgroup_vnic1: VM Network
 vmxtype: CP
-

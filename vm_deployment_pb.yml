@@ -1,8 +1,11 @@
 ---
- - name: Create vFPC and vCP VM templates
-   hosts: vmx_templates
+ - name: Deploy vMX lab VMs
+   hosts: vmxlab
    connection: local
-   gather_facts: no
-
+   vars_prompt:
+     - name: "version"
+       prompt: "Which junos version ? 17.2R1.13 17.1R1.8 16.2R1.6, 16.1R2.11, 16.1R1.7, 15.1F6.9"
+       default: "17.2R1.13"
+       private: no
    roles:
-   - vm_template_create
+   - vm_deploy_from_template

@@ -1,9 +1,8 @@
 ---
-ovftool_path:
-vcenter: 10.20.30.40
-datacenter: myDC
-# Put the name of ESX cluster here
-cluster: myEsxCluster
-datastore: storage_abc
-pathtoova: ./
-sslverify: False
+ovftool_path: /usr/bin/
+cluster: "Laboratory\\LAB\ Cluster\ 2"
+datastore: netapp_storage11
+pathtoova: ~/vmx_vmware_lab
+
+
+

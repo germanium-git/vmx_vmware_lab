@@ -1,0 +1,32 @@
+---
+- name: Clone vFPC VMs
+  vsphere_guest:
+    validate_certs: False 
+    vcenter_hostname: "{{ vcenter }}"
+    username: "{{ vuser }}"
+    password: "{{ vpassword }}"
+    guest: "{{ inventory_hostname }}_vfpc_{{ version }}"
+    from_template: yes
+    cluster: "{{ cluster }}" 
+    resource_pool: "{{ rpool }}"
+    power_on_after_clone: No
+    template_src: "vMX_vfpc_{{ version }}"
+    esxi:
+      datacenter: "{{ datacenter }}"
+      hostname: "{{ vmwarehost }}"
+
+- name: Clone vCP VMs
+  vsphere_guest:
+    validate_certs: False
+    vcenter_hostname: "{{ vcenter }}"
+    username: "{{ vuser }}"
+    password: "{{ vpassword }}"
+    guest: "{{ inventory_hostname }}_vcp_{{ version }}"
+    from_template: yes
+    cluster: "{{ cluster }}"
+    resource_pool: "{{ rpool }}"
+    power_on_after_clone: No
+    template_src: "vMX_vcp_{{ version }}"
+    esxi:
+      datacenter: "{{ datacenter }}"
+      hostname: "{{ vmwarehost }}"
