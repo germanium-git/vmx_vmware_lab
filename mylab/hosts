@@ -7,12 +7,8 @@ vCP
 vFPC
 
 
-[juniper:children]
-routers
-
-
 [vmxlab]
-vMX-01
-vMX-02
-vMX-03
-vMX-04
+vMX-1
+vMX-2
+vMX-3
+vMX-4

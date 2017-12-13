@@ -1,0 +1,12 @@
+---
+- name: Add serial port
+  vm_add_serial:
+     vcenter_ip: "{{ vcenter }}"
+     vcenter_user: "{{ vuser }}"
+     vcenter_password: "{{ vpassword }}"
+     vm_name: "{{ vmname}}"
+     telnet_port: "{{ TERMSERV_PORT }}"
+
+
+
+
