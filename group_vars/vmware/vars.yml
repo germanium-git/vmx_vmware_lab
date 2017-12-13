@@ -1,7 +1,7 @@
 ---
 ovftool_path: /usr/bin/
-cluster: "Laboratory\\LAB\ Cluster\ 2"
-datastore: netapp_storage11
+cluster: "Folder\\Cluster\ name\ 1"
+datastore: my_storage
 pathtoova: ~/vmx_vmware_lab
 
 

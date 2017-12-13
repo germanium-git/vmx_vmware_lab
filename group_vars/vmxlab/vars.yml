@@ -1,4 +1,4 @@
 ---
 rpool: "/Resources/net"
-cluster: "Laboratory\\LAB\ Cluster\ 2"
-vmwarehost: 10.33.94.180
+cluster: "Folder\\Cluster\ name\ 1"
+vmwarehost: 10.20.30.40

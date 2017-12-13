@@ -2,3 +2,6 @@
 vars_gitexclude.yml
 mylab/host_vars/vCP_giteclude.yml
 mylab/host_vars/vFPC_gitexclude.yml
+/group_vars/vmxlab/vars_gitexclude.yml
+/group_vars/vmware/vars_gitexclude.yml
+/group_vars/all/vars_gitexclude.yml
