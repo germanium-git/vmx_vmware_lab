@@ -58,8 +58,7 @@ def add_serial(si, vm, port):
     spec.deviceChange = dev_changes
 
     # Update the VM
-    task = vm.ReconfigVM_Task(spec=spec)
-    tasks.wait_for_tasks(si, [task])
+    vm.ReconfigVM_Task(spec=spec)
 
 
 

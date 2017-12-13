@@ -2,25 +2,26 @@
 
 #### Create VM templates
 
-1. install ansible
-2. install ovftools
-3. install pyVmomi, pyVim
-4. clone repository
-5. download vMX from Juniper networks
-6. update inventory
+1. Install ansible
+2. Install ovftools
+3. Install pyVmomi, pyVim
+4. Clone repository
+5. Download vMX from Juniper networks
+6. Update inventory
     - vi mylab/hosts
     - vi mylab/host_vars/vMX-01.yml
-7. update variables with valid storage, cluster, vCenter and datacenter
+7. Update variables with valid storage, cluster, vCenter and datacenter
     - vi group_vars/all/vars.yml
     - vi group_vars/vmware/vars.yml
-8. update vault
+8. Update vault
     - vi group_vars/all/vault.yml
-9. encrypt the vault
+9. Encrypt the vault
     - ansible-vault encrypt group_vars/all/vault.yml
-10. execute playbook
+10. Execute playbook
     - ansible-playbook -i mylab vm_template_pb.yml --ask-vault-pass
 
 
 #### Deploy vMX Virtual Machines
-WIP
+
+1. Run the playbook
 ansible-playbook -i mylab vm_deployment_pb.yml --ask-vault-pass
