@@ -25,3 +25,9 @@
 
 1. Run the playbook
 ansible-playbook -i mylab vm_deployment_pb.yml --ask-vault-pass
+
+
+#### Delete vMX Virtual Machines
+
+1. Run the playbook
+ansible-playbook -i mylab vm_delete_pb.yml --ask-vault-pass
