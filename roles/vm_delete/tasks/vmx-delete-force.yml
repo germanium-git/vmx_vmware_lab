@@ -1,0 +1,27 @@
+---
+- name: Deleting vCP VMs
+  vsphere_guest:
+    validate_certs: False 
+    vcenter_hostname: "{{ vcenter }}"
+    username: "{{ vuser }}"
+    password: "{{ vpassword }}"
+    guest: "{{ inventory_hostname }}_vcp_{{ version }}"
+    state: absent
+    force: yes
+    cluster: "{{ cluster }}"
+    esxi:
+      datacenter: "{{ datacenter }}"
+
+- name: Deleting vFPC VMs
+  vsphere_guest:
+    validate_certs: False
+    vcenter_hostname: "{{ vcenter }}"
+    username: "{{ vmuser }}"
+    password: "{{ vmpassword }}"
+    guest: "{{ inventory_hostname }}_vfpc_{{ version }}"
+    state: absent
+    force: yes
+    cluster: "{{ cluster }}"
+    esxi:
+      datacenter: "{{ datacenter }}"
+

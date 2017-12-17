@@ -1,0 +1,9 @@
+---
+- name: Checking vCenter connectivity
+  connection: local
+  local_action: wait_for host="{{ vcenter }}" port=443 timeout=3 
+
+
+- import_tasks: vmx-delete-force.yml
+
+
