@@ -23,7 +23,10 @@
 
 #### Deploy vMX Virtual Machines
 
-1. Run the playbook
+1. Update the variables with a valid cluster name and esx host ip where the VMs will be deployed.
+    - vi group_vars/vmxlab/vars.yml
+    
+2. Run the playbook
 ansible-playbook -i mylab vm_deployment_pb.yml --ask-vault-pass
 
 
