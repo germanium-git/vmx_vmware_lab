@@ -4,8 +4,8 @@
    connection: local
    vars_prompt:
      - name: "version"
-       prompt: "Which junos version ? 17.2R1.13 17.1R1.8 16.2R1.6, 16.1R2.11, 16.1R1.7, 15.1F6.9"
-       default: "17.2R1.13"
+       prompt: "Which Junos version ? 17.4R1.16 17.2R1.13 17.1R1.8 16.2R1.6, 16.1R2.11, 16.1R1.7"
+       default: "17.4R1.16"
        private: no
    roles:
    - vm_deploy_from_template

@@ -3,6 +3,11 @@
    hosts: vmx_templates
    connection: local
    gather_facts: no
+   vars_prompt:
+     - name: "version"
+       prompt: "Which Junos version ? 17.4R1.16 17.2R1.13 17.1R1.8 16.2R1.6, 16.1R2.11, 16.1R1.7"
+       default: "17.4R1.16"
+       private: no
 
    roles:
    - vm_template_create

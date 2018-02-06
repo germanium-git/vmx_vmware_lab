@@ -3,6 +3,7 @@
 
 from ansible.module_utils.basic import *
 
+
 def main():
     module = AnsibleModule(
         argument_spec=dict(
@@ -25,13 +26,11 @@ def main():
         supports_check_mode=True,
     )
 
-
     ovftool_exec = '{}ovftool'.format(module.params['ovftool_path'])
     ova_file = '{}/{}'.format(module.params['path_to_ova'], module.params['ova_file'])
     vi_string = 'vi://{}:{}@{}'.format(module.params['vcenter_user'],
                                                    module.params['vcenter_password'],
                                                    module.params['vcenter'])
-
 
     if len(module.params['datacenter'].strip())>0:
         vi_string += '/{}/host/{}'.format(module.params['datacenter'], module.params['cluster'])
@@ -57,7 +56,6 @@ def main():
         module.fail_json(msg='Failed to deploy OVA, error message from ovftool is: {}'.format(ova_tool_result[1]))
 
     module.exit_json(changed=True, ova_tool_result=ova_tool_result)
-
 
 
 if __name__ == '__main__':

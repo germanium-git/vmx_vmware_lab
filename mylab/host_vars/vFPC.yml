@@ -1,6 +1,6 @@
 ---
-ovafile: vfpc_17.2R1.13.ova
-vmname: vMX_vfpc_17.2R1.13
+ovafile: "vfpc_{{ version }}.ova"
+vmname: "vMX_vfpc_{{ version }}"
 ovfnetwork_vnic0: br-ext
 portgroup_vnic0: VM Network
 ovfnetwork_vnic1: br-int

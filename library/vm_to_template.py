@@ -10,7 +10,6 @@ context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
 context.verify_mode = ssl.CERT_NONE
 
 
-
 def get_obj(content, vimtype, name):
     obj = None
     container = content.viewManager.CreateContainerView(
@@ -20,7 +19,6 @@ def get_obj(content, vimtype, name):
             obj = c
             break
     return obj
-
 
 
 def main():
@@ -51,7 +49,6 @@ def main():
         module.exit_json(changed=True)
     else:
         module.fail_json(msg="VM not found")
-
 
 
 if __name__ == "__main__":
