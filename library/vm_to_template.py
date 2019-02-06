@@ -6,7 +6,7 @@ import atexit
 import ssl
 from ansible.module_utils.basic import *
 
-context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
 context.verify_mode = ssl.CERT_NONE
 
 

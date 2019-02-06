@@ -6,4 +6,6 @@
 
 - import_tasks: vmx-vm-clone.yml
 - import_tasks: vm-add-serial.yml
-
+- import_tasks: vm-nics.yml
+- import_tasks: vm-mac.yml
+- import_tasks: vm-poweron.yml

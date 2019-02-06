@@ -1,0 +1,21 @@
+---
+# Get facts
+
+ - name: Get facts
+   hosts: localhost
+   gather_facts: false
+   connection: local
+
+   tasks:
+     - name: gathering the VM facts
+       vmware_guest:
+         validate_certs: False
+         hostname: "{{ vcenter }}"
+         username: "{{ vuser }}"
+         password: "{{ vpassword }}"
+         name: VMJump
+       register: facts
+
+     - name: IP address info
+       debug:
+         msg: "{{ facts }}"

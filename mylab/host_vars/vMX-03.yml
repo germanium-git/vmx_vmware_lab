@@ -1,3 +1,5 @@
 ---
-ip_address: 10.33.95.7
-termserv_port: 8603
+ip_address: 44.10.3.3
+termserv_port: 8602
+mac: 00:05:56:aa:bb:33
+portgroup: vxw-dvs-49-virtualwire-69-sid-5021-vMX-03_fpc

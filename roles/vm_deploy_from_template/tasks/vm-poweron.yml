@@ -1,0 +1,18 @@
+---
+- name: Power On the VM - vFPC
+  vmware_guest:
+    validate_certs: False
+    hostname: "{{ vcenter }}"
+    username: "{{ vuser }}"
+    password: "{{ vpassword }}"
+    name: "{{ inventory_hostname }}_vfpc_{{ version }}"
+    state: poweredon
+
+- name: Power On the VM - vCP
+  vmware_guest:
+    validate_certs: False
+    hostname: "{{ vcenter }}"
+    username: "{{ vuser }}"
+    password: "{{ vpassword }}"
+    name: "{{ inventory_hostname }}_vcp_{{ version }}"
+    state: poweredon

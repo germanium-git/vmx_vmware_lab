@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-from pyVmomi import vim
+from pyVmomi import vim, vmodl
 from pyVim.connect import SmartConnect, Disconnect
 import atexit
 import ssl
 from ansible.module_utils.basic import *
 
-context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
 context.verify_mode = ssl.CERT_NONE
 
 
@@ -65,47 +65,41 @@ def wait_for_tasks(service_instance, tasks):
             pcfilter.Destroy()
 
 
-def add_nic(si, vm, network):
+def update_virtual_nic_state(si, vm_obj, nic_number, mac_addr):
     """
     :param si: Service Instance
-    :param vm: Virtual Machine Object
-    :param network: Virtual Network
-
-    It adds vnic of VXNET3 type, nic_spec.device = vim.vm.device.VirtualE1000() ic commented
+    :param vm_obj: Virtual Machine Object
+    :param nic_number: Network Interface Controller Number
+    :param mac_addr: MAC address
+    :return: True if success
     """
+    nic_prefix_label = 'Network adapter '
+    nic_label = nic_prefix_label + str(nic_number)
+    virtual_nic_device = None
+    for dev in vm_obj.config.hardware.device:
+        if isinstance(dev, vim.vm.device.VirtualEthernetCard) \
+                and dev.deviceInfo.label == nic_label:
+            virtual_nic_device = dev
+    if not virtual_nic_device:
+        raise RuntimeError('Virtual {} could not be found.'.format(nic_label))
+
+    dev_changes = []
+    virtual_nic_spec = vim.vm.device.VirtualDeviceSpec()
+    virtual_nic_spec.operation = vim.vm.device.VirtualDeviceSpec.Operation.edit
+    virtual_nic_spec.device = virtual_nic_device
+    virtual_nic_spec.device.key = virtual_nic_device.key
+    virtual_nic_spec.device.macAddress = virtual_nic_device.macAddress
+    virtual_nic_spec.device.backing = virtual_nic_device.backing
+
+    virtual_nic_spec.device.addressType = 'assigned'
+    virtual_nic_spec.device.macAddress = mac_addr
+
+    dev_changes.append(virtual_nic_spec)
     spec = vim.vm.ConfigSpec()
-    nic_changes = []
-
-    nic_spec = vim.vm.device.VirtualDeviceSpec()
-    nic_spec.operation = vim.vm.device.VirtualDeviceSpec.Operation.add
-
-    nic_spec.device = vim.vm.device.VirtualVmxnet3()
-    # nic_spec.device = vim.vm.device.VirtualE1000()
-
-    nic_spec.device.deviceInfo = vim.Description()
-    nic_spec.device.deviceInfo.summary = 'vCenter API test'
-
-    nic_spec.device.backing = \
-        vim.vm.device.VirtualEthernetCard.NetworkBackingInfo()
-    nic_spec.device.backing.useAutoDetect = False
-    content = si.RetrieveContent()
-    nic_spec.device.backing.network = get_obj(content, [vim.Network], network)
-    nic_spec.device.backing.deviceName = network
-
-    nic_spec.device.connectable = vim.vm.device.VirtualDevice.ConnectInfo()
-    nic_spec.device.connectable.startConnected = True
-    nic_spec.device.connectable.startConnected = True
-    nic_spec.device.connectable.allowGuestControl = True
-    nic_spec.device.connectable.connected = False
-    nic_spec.device.connectable.status = 'untried'
-    nic_spec.device.wakeOnLanEnabled = True
-    nic_spec.device.addressType = 'assigned'
-
-    nic_changes.append(nic_spec)
-    spec.deviceChange = nic_changes
-    task = vm.ReconfigVM_Task(spec=spec)
+    spec.deviceChange = dev_changes
+    task = vm_obj.ReconfigVM_Task(spec=spec)
     wait_for_tasks(si, [task])
-    print "NIC CARD ADDED"
+    return True
 
 
 def main():
@@ -116,26 +110,23 @@ def main():
             vcenter_password=dict(required=True, type='str', no_log=True),
             vport=dict(required=False, type='str', default='443'),
             vm_name=dict(required=True, type='str'),
-            vmnics=dict(required=True, type='dict'),
+            vnic=dict(required=True, type='str'),
+            mac=dict(required=True, type='str')
         ),
         supports_check_mode=True,
     )
 
     # connect vSphere
-    si = SmartConnect(host=module.params['vcenter_ip'],
-                      user=module.params['vcenter_user'],
-                      pwd=module.params['vcenter_password'],
-                      port=module.params['vport'],
-                      sslContext=context)
+    serviceInstance = SmartConnect(host=module.params['vcenter_ip'], user=module.params['vcenter_user'],
+                                   pwd=module.params['vcenter_password'], port=module.params['vport'], sslContext=context)
     # disconnect vSphere
-    atexit.register(Disconnect, si)
+    atexit.register(Disconnect, serviceInstance)
 
-    content = si.RetrieveContent()
+    content = serviceInstance.RetrieveContent()
     vm = get_obj(content, [vim.VirtualMachine], module.params['vm_name'])
 
     if vm:
-        for vmnic in module.params['vmnics']:
-            add_nic(si, vm, module.params['vmnics'][vmnic])
+        update_virtual_nic_state(serviceInstance, vm, module.params['vnic'], module.params['mac'])
         module.exit_json(changed=True)
     else:
         module.fail_json(msg="VM not found")
@@ -143,4 +134,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

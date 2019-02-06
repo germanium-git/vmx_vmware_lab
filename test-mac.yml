@@ -1,0 +1,16 @@
+---
+- name: Update a vnic with a specific MAC address
+  hosts: localhost
+  strategy: debug
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: Change MAC address of a specific vnic
+      vm_vnic_macaddress:
+        vcenter_ip: "{{ vcenter }}"
+        vcenter_user: "{{ vuser }}"
+        vcenter_password: "{{ vpassword }}"
+        vm_name: vMX-01_vcp_18.4R1.8
+        vnic: 1
+        mac: "00:0c:29:ac:12:34"
