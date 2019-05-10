@@ -3,6 +3,32 @@
   connection: local
   local_action: wait_for host="{{ vcenter }}" port=443 timeout=3 
 
+- name: Print some debug information
+  vars:
+    msg: |
+        Module Variables ("vars"):
+        --------------------------------
+        {{ vars | to_nice_json }}
+
+        Environment Variables ("environment"):
+        --------------------------------
+        {{ environment | to_nice_json }}
+
+        GROUP NAMES Variables ("group_names"):
+        --------------------------------
+        {{ group_names | to_nice_json }}
+
+        GROUPS Variables ("groups"):
+        --------------------------------
+        {{ groups | to_nice_json }}
+
+        HOST Variables ("hostvars"):
+        --------------------------------
+        {{ hostvars | to_nice_json }}
+
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  tags: debug_info
 
 - import_tasks: ovftool.yml
 - import_tasks: vm-add-nic.yml
