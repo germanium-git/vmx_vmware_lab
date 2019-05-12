@@ -2,8 +2,8 @@
 - name: Update MAC address of the vnic1
   vm_vnic_macaddress:
     vcenter_ip: "{{ vcenter }}"
-    vcenter_user: "{{ vuser }}"
-    vcenter_password: "{{ vpassword }}"
+    vcenter_user: "{{ vmuser }}"
+    vcenter_password: "{{ vmpassword }}"
     vm_name: "{{ inventory_hostname }}_vcp_{{ version }}"
     vnic: 1
     mac: "{{ mac }}"

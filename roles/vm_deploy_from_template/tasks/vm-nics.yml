@@ -2,8 +2,8 @@
 - name: Change vnics settings for vFPC
   vsphere_guest:
     vcenter_hostname: "{{ vcenter }}"
-    username: "{{ vuser }}"
-    password: "{{ vpassword }}"
+    username: "{{ vmuser }}"
+    password: "{{ vmpassword }}"
     validate_certs: False
     guest: "{{ inventory_hostname }}_vfpc_{{ version }}"
     state: reconfigured
@@ -17,8 +17,8 @@
 - name: Change vnics settings for vCP
   vsphere_guest:
     vcenter_hostname: "{{ vcenter }}"
-    username: "{{ vuser }}"
-    password: "{{ vpassword }}"
+    username: "{{ vmuser }}"
+    password: "{{ vmpassword }}"
     validate_certs: False
     guest: "{{ inventory_hostname }}_vcp_{{ version }}"
     state: reconfigured

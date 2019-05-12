@@ -3,8 +3,8 @@
   vmware_guest:
     validate_certs: False
     hostname: "{{ vcenter }}"
-    username: "{{ vuser }}"
-    password: "{{ vpassword }}"
+    username: "{{ vmuser }}"
+    password: "{{ vmpassword }}"
     name: "{{ inventory_hostname }}_vfpc_{{ version }}"
     state: poweredon
 
@@ -12,7 +12,7 @@
   vmware_guest:
     validate_certs: False
     hostname: "{{ vcenter }}"
-    username: "{{ vuser }}"
-    password: "{{ vpassword }}"
+    username: "{{ vmuser }}"
+    password: "{{ vmpassword }}"
     name: "{{ inventory_hostname }}_vcp_{{ version }}"
     state: poweredon
