@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from pyVmomi import vim
+from pyVmomi import vim, vmodl
 from pyVim.connect import SmartConnect, Disconnect
 import atexit
 import ssl
