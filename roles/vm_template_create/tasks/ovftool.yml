@@ -4,8 +4,8 @@
     module: ovftool
     ovftool_path: "{{ovftool_path}}"
     vcenter: "{{vcenter}}"
-    vcenter_user: "{{vuser}}"
-    vcenter_password: "{{vpassword}}"
+    vcenter_user: "{{vmuser}}"
+    vcenter_password: "{{vmpassword}}"
     datacenter: "{{datacenter}}"
     cluster: "{{cluster}}"
     datastore: "{{datastore}}"

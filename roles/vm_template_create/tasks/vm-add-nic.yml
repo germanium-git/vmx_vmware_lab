@@ -2,8 +2,8 @@
 - name: Add vnic3-8 to FPC
   vm_addnic:
      vcenter_ip: "{{ vcenter }}"
-     vcenter_user: "{{ vuser }}"
-     vcenter_password: "{{ vpassword }}"
+     vcenter_user: "{{ vmuser }}"
+     vcenter_password: "{{ vmpassword }}"
      vm_name: "{{ vmname}}"
      vmnics: "{{ vmnics }}"
 
