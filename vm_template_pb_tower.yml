@@ -3,6 +3,8 @@
    hosts: vmx_templates
    connection: local
    gather_facts: no
+   vars:
+     path_to_ova: /var/tmp/images
 
    roles:
    - vm_template_create
