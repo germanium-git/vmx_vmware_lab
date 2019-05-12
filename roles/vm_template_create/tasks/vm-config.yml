@@ -45,8 +45,8 @@
   vsphere_guest:
     validate_certs: False
     vcenter_hostname: "{{ vcenter }}"
-    username: "{{ vuser }}"
-    password: "{{ vpassword }}"
+    username: "{{ vmuser }}"
+    password: "{{ vmpassword }}"
     guest: "{{ vmname}}"
     state: reconfigured
     vm_hardware:
