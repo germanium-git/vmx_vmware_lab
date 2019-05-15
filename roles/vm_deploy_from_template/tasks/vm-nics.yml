@@ -12,7 +12,7 @@
         network: "{{ portgroup }}"
         network_type: dvs
     esxi:
-      datacenter: VMLAB
+      datacenter: "{{ datacenter }}"
 
 - name: Change vnics settings for vCP
   vsphere_guest:
@@ -27,4 +27,4 @@
         network: "{{ portgroup }}"
         network_type: dvs
     esxi:
-      datacenter: VMLAB
+      datacenter: "{{ datacenter }}"
